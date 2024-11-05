@@ -56,13 +56,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'mysite.urls'
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+'DEFAULT_PERMISSION_CLASSES': [
+# 'rest_framework.permissions.IsAdminUser ’,
+],
+'PAGE_SIZE': 10
 }
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
