@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-32u-cj(+!$ee$yid09@u(tggezd-n%te(b6%$v2d7kb4k50v&*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '10.0.2.2', '.pythonanywhere.com']
 
 
 # Application definition
@@ -56,10 +56,13 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'mysite.urls'
 
 REST_FRAMEWORK = {
-'DEFAULT_PERMISSION_CLASSES': [
-# 'rest_framework.permissions.IsAdminUser ’,
-],
-'PAGE_SIZE': 10
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')

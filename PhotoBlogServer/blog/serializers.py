@@ -1,9 +1,13 @@
-from blog.models import Post
 from rest_framework import serializers
+from .models import Post, Comment
 from django.contrib.auth.models import User
 
-class PostSerializer(serializers.HyperlinkedModelSerializer):
-    author = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-    class Meta: 
-        model = Post 
-        fields = ('author', 'title', 'text', 'created_date', 'published_date', 'image')
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['id', 'author', 'title', 'text', 'created_date', 'published_date', 'image', 'favorites']
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ['id', 'post', 'author', 'text', 'created_date']
